@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📸 Admin Dashboard</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+    }
+
+    header {
+      background: white;
+      padding: 12px 20px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logout-btn {
+      background-color: #e63946;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .content-wrapper {
+      padding: 30px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    .status-filter {
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: #f5f5f5;
+    }
+
+    select.status-dropdown {
+      padding: 5px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">📸 SnapBook Admin</div>
+    <div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="content-wrapper">
+    <h2>📅 All Bookings</h2>
+    <div id="adminError" style="color: red; display: none;"></div>
+
+    <div class="status-filter">
+      <label for="statusSort">Filter by Status: </label>
+      <select id="statusSort">
+        <option value="all">All</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Type</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Location</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="bookingsTableBody"></tbody>
+    </table>
+  </div>
+
+  <script type="module" src="../js/admin.js"></script>
+  <script>
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
+

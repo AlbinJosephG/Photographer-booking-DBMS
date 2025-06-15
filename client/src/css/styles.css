@@ -1,0 +1,178 @@
+/* Base reset and background */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+  color: #102a43;
+}
+
+/* Header */
+.header {
+  background-color: #102a43;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Container Card */
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Input, Select, and Button Styling */
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #bcccdc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+input:focus, select:focus {
+  border-color: #3a86ff;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  background-color: #3a86ff;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #265dbe;
+  transform: translateY(-1px);
+}
+
+button.btn-outline {
+  background-color: transparent;
+  border: 2px solid #3a86ff;
+  color: #3a86ff;
+}
+
+button.btn-outline:hover {
+  background-color: #e0f0ff;
+  color: #102a43;
+}
+
+/* Auth-specific titles and forms */
+.auth-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.auth-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  margin: 1rem 0 0.5rem;
+  color: #627d98;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+.divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #bcccdc;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: #d9e2ec;
+}
+
+.divider::before {
+  left: 0;
+}
+.divider::after {
+  right: 0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 480px) {
+  .container {
+    margin: 30px 1rem;
+    padding: 1.5rem;
+  }
+}
+.bookings-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.bookings-table th, .bookings-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.bookings-table th {
+  background-color: #f4f6f8;
+  font-weight: 600;
+  color: #102a43;
+}
+
+.bookings-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.status {
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.approved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+

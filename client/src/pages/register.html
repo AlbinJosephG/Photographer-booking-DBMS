@@ -1,0 +1,29 @@
+<!-- client/src/pages/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register | SnapBook</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h2 class="auth-title">Create Your Account</h2>
+    <form id="registerForm" class="auth-form">
+      <input type="text" id="regUsername" placeholder="Choose a username" required />
+      <span id="usernameFeedback" style="font-size: 0.9rem; display: block; margin-bottom: 10px;"></span>
+
+      <input type="password" id="regPassword" placeholder="Choose a password" required />
+      <button type="submit">Register</button>
+    </form>
+
+    <div class="divider">or</div>
+
+    <a href="login.html">
+      <button class="btn-outline">Back to Login</button>
+    </a>
+  </div>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

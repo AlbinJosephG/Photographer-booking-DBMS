@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book a Session | SnapBook</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .layout {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #102a43;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar h2 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+
+    #logoutBtn {
+      background-color: #e63946;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    #logoutBtn:hover {
+      background-color: #c82333;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    .extras-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .alert.success {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 12px 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #c3e6cb;
+      font-weight: bold;
+      display: none;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+    }
+
+    input, select, button {
+      padding: 10px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="sidebar">
+      <div>
+        <h2>📸 SnapBook</h2>
+        <a href="index.html">Book a Session</a>
+        <a href="my-bookings.html">My Bookings</a>
+      </div>
+      <button id="logoutBtn">Logout</button>
+    </div>
+
+    <div class="main-content">
+      <div class="container">
+        <h2>Book a Photography Session</h2>
+
+        <!-- ✅ Success Alert -->
+        <div id="bookingSuccess" class="alert success">
+          ✅ Booking successful! 
+        </div>
+
+        <form id="bookingForm">
+          <select id="sessionType">
+            <option value="wedding">Wedding</option>
+            <option value="graduation">Graduation</option>
+            <option value="portrait">Portrait</option>
+          </select>
+
+          <input type="text" placeholder="Location" id="location" required />
+          <input type="date" id="date" required />
+          <input type="time" id="time" required />
+
+          <button type="submit">Book Now</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    const token = localStorage.getItem('token');
+    const API_BASE = 'http://localhost:5000';
+
+    // ⏳ Prevent past date selection
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+
+    const form = document.getElementById('bookingForm');
+    const successBox = document.getElementById('bookingSuccess');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const bookingData = {
+        sessionType: document.getElementById('sessionType').value,
+        location: document.getElementById('location').value,
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/api/bookings`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(bookingData),
+        });
+
+        if (!res.ok) throw new Error('Booking failed');
+
+        successBox.style.display = 'block';
+
+        setTimeout(() => {
+          window.location.href = 'my-bookings.html';
+        }, 2500);
+
+      } catch (err) {
+        alert('❌ Failed to book session. Please try again.');
+        console.error(err);
+      }
+    });
+
+    // ✅ Logout logic
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
+
