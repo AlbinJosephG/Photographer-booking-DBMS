@@ -36,7 +36,7 @@ node app.js
 ```
 
 - Run the Frontend
-'''
+```
 cd client
 npm run dev
 ```
